@@ -1,47 +1,49 @@
 language: php
 
 php:
+  - 5.5
   - 5.6
-  - hhvm
 
-env:
-  - TESTER_PHP_BIN="php-cgi"
-  - TESTER_PHP_BIN="hhvm"
-
-matrix:
-  allow_failures:
-    - php: hhvm
-
-  exclude:
-    - php: 5.6
-      env: TESTER_PHP_BIN="hhvm"
-
-    - php: hhvm
-      env: TESTER_PHP_BIN="php-cgi"
+addons:
+  hosts:
+    - laravelstarterkit
 
 services:
-  - redis-server
+  - mysql
 
-before_install:
-  - composer self-update
+mysql:
+  database: czx
+  username: root
+  encoding: utf8
 
 install:
-  - composer install --no-interaction --prefer-source
+  - composer install --prefer-dist --optimize-autoloader
 
 before_script:
-  - mysql -u root -e 'CREATE DATABASE czx;'
-  - mysql -u root czx < czx.sql
+  #make .env
+  - cp .env.example .env
+  - sed -i 's/APP_URL=http:\/\/localhost/APP_URL=http:\/\/laravelstarterkit/g' .env
+  - sed -i 's/DB_DATABASE=homestead/DB_DATABASE=laravel/g' .env
+  - sed -i 's/DB_USERNAME=homestead/DB_USERNAME=root/g' .env
+  - sed -i 's/DB_PASSWORD=secret/DB_PASSWORD=/g' .env
+  #create database
+  - mysql -uroot -e 'create database czx;'
+  #setup laravel app
+  - php artisan key:generate
+  - php artisan make:auth
+  - php artisan migrate
+  - php artisan db:seed
+  #insall apache
+  - sudo apt-get update
+  - sudo apt-get install apache2 libapache2-mod-fastcgi
+  #enable php-fpm
+  - sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
+  - sudo a2enmod rewrite actions fastcgi alias
+  - echo "cgi.fix_pathinfo = 1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
+  #configure vhosts
+  - sudo cp -f build/travis-ci-apache /etc/apache2/sites-available/default
+  - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
+  - sudo service apache2 restart
 
-script:
-  - ./vendor/bin/tester -p $TESTER_PHP_BIN -c ./tests/php.ini -s ./tests/
-
-after_failure:
-  # Prints *.actual files content
-  - for i in $(find ./tests -name \*.actual); do echo "--- $i"; cat $i; echo; echo; done
-deploy:
-  provider: pages
-  skip_cleanup: true
-  local_dir: dist
-  github_token: $GH_TOKEN
-  on:
-    branch: master
+script: phpunit --configuration phpunit.xml
