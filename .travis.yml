@@ -50,3 +50,10 @@ script:
 after_failure:
   # Prints *.actual files content
   - for i in $(find ./tests -name \*.actual); do echo "--- $i"; cat $i; echo; echo; done
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: dist
+  github_token: $GH_TOKEN
+  on:
+    branch: master
