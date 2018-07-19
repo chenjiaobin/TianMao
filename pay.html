@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>结算页面</title>
+<link type="text/css" href="CSS/css.css" rel="stylesheet" />
+</head>
+
+<body>
+<div class="header">
+	<div class="header_top">
+    	<div class="top comWidth">
+        	<div class="top_l"><a href="javascript:void(0)">收藏网淘</a></div>
+            <div class="top_r">欢迎来到网淘网！<a href="login.html">[登录]</a><a href="register.html">[免费注册]</a></div>
+        </div>
+    </div><!--header_top结束-->
+    <div class="header_mid">
+        <div class="banner comWidth">
+            <div class="header_logo"><span class="img"></span></div>
+         </div>
+    </div><!--header_mid结束-->
+    <div class="pay_content comWidth">
+    	<div class="pay_user">
+        	<div class="pay_tit">收货信息</div>
+            <div class="pay_txt">
+                <div class="user user_top">
+                    <span class="user_info"><i>*</i>选择地区：</span>
+                    <span class="info_input"><a href="#">北京市 海淀区 五环内<i></i></a></span>
+                </div> 
+                <div class="user">
+                    <span class="user_info"><i>*</i><label for="detail_add">详细地址：</label></span>
+                    <input type="text" placeholder="最多输入56个汉字"  class="detail_add" id="detail_add"/>
+                </div>   
+                <div class="user">
+                    <span class="user_info"><i>*</i><label for="receipt">收 货 人：</label></span>
+                    <input type="text" placeholder="最多10个汉字"  class="receipt" id="receipt"/>
+                </div>   
+                <div class="user">
+                    <span class="user_info"><i>*</i><label for="user_phone">手&nbsp;&nbsp;机：</label></span>
+                    <input type="text" placeholder="如15814631049" class="user_phone" id="user_phone" />
+                    或固定电话：
+                    <input type="text" placeholder="区号" class="area_code" /> -
+                    <input type="text" placeholder="电话号码" class="fixed_phone" /> -
+                    <input type="text" placeholder="分机可选"  class="extension"/>
+                </div>
+            <div class="address_sure"><a href="#">确认收货地址</a></div>     
+            </div>
+        </div>
+    	<div class="pay_user">
+        	<div class="pay_tit">支付方式</div>
+            <div class="pay_txt">
+            	<span class="pay_way pay_top"><input type="radio" name="pay_way" />微信支付<i></i>用微信扫一扫就能支付</span>
+                <span class="pay_way" ><input type="radio" name="pay_way" />货到付款&nbsp;&nbsp;送货上门再付款，使用现金或银行卡</span>
+            </div>
+        </div>
+    	<div class="pay_user">
+        	<div class="pay_tit">发票信息</div>
+            <div class="pay_txt">
+            	<div class="invoice"><input type="checkbox" name="invoice" />需要发票</div>
+                <div class="user">
+                    <span class="user_info"><i>*</i>发票类型：</span>
+                    <input type="text" list="searchlist" name="invoice_type" class="invoice_type" />
+                    <datalist id="searchlist">
+                    	<option value="商业零售发票" selected="selected">
+                        <option value="哈哈发票">
+                        <option value="l来看发票">
+                    </datalist>
+                </div> 
+                <div class="user">
+                    <span class="user_info"><i>*</i>发票抬头：</span>
+                    <input type="text" list="searchlist_tt" name="invoice_tt" class="invoice_tt" />
+                    <datalist id="searchlist_tt">
+                    	<option value="个人" selected="selected">
+                        <option value="多人">
+                    </datalist>
+                </div> 
+                <div class="yes_no">
+                	<span class="yes"><a href="#" class="yes_active">保存</a></span>
+                    <span class="no"><a href="#">取消</a></span>
+                </div>
+            </div>
+        </div>
+    	<div class="pay_user">
+        	<div class="pay_tit">送货清单
+              <span class="repair"><a href="#">返回购物车修改</a></span>
+            </div>
+            <div>
+            	<div class="cart_head">
+                	<div class="cart_item t_name cart_l">商品名称</div>
+                    <div class="cart_item t_price">单价</div>
+                    <div class="cart_item t_back">返现</div>
+                    <div class="cart_item t_sum">数量</div>
+                    <div class="cart_item t_count">小计</div>
+                </div>
+            	<div class="cart_head cart_all">
+                	<div class="cart_item t_name">
+                    	<a href="#" class="cart_img"><img src="images/cart.jpg" alt="慕课网" /></a>
+                        <div class="cart_shopinfo">
+                        	<p class="cart_link"><a href="#">Hisense手机打开酒店房间开发的</a></p>
+                            <p class="cart_info"><a href="#">空的饭店客房的开发接口</a></p>
+                        </div>
+                    </div>
+                    <div class="cart_item t_price">
+                    	<p>￥1459.00</p>
+                    </div>
+                    <div class="cart_item t_back">
+                    	<p>￥0.00</p>
+                    </div>
+                    <div class="cart_item t_sum">
+                    	<p class="cart_link">1</p>
+                        <p class="cart_info">1</p>
+                    </div>
+                    <div class="cart_item t_count">
+                    	<p>￥1459.00</p>
+                    </div>
+                </div>
+                <div class="shop_all">
+                  <p class="special">若您对包裹有特殊要求，请在此留言</p>
+                  <p class="sorry"><i></i>抱歉，以下商品暂时不能购买，已帮您在这次购买中自动减掉，您可以购买其他商品
+                  </p>
+                  <div class="sorry_goods">
+                  	<a href="#"><img src="images/sorry_goods.jpg" alt="慕课网" /></a>
+                    <span class="sorry_goods_info">
+                    	<p class="sorry_txt"><a href="#">送的发动机防盗的哈哈</a></p>
+                        <p>数量：1件</p>
+                        <p>￥4.90<i>（无货）</i></p>
+                    </span>
+                  </div>
+                </div>
+            </div>
+        </div>
+    	<div class="pay_user">
+        	<div class="pay_tit">订单结算</div>
+            <div class="pay_txt">
+            	<p class="settlement">总计<i>￥1459.00</i></p>
+                <p class="submit_order"><a href="#">提交订单</a></p>
+            </div>
+        </div>
+    </div><!--pay_content结束-->
+<div class="hr40"></div>
+<div class="footer">
+<div class="bottom comWidth">
+	<p class="bot_nav"><a href="#">网淘简介</a>|<a href="#">网淘招募</a>|<a href="#">网淘公告</a>|<a href="#">招贤纳士</a>| 客服热线400-675-1234</p>
+    <p class="bot_copy">Copyright &copy; 2006 - 2014 网淘版权所有   京ICP备09037834号   京ICP证B1034-8373号   某市公安局XX分局备案编号：123456789123</p>
+    <p class="bot_img">
+        <a href="#"><img src="images/footer.jpg" alt="慕课网" /></a>
+         <a href="#"><img src="images/footer.jpg" alt="慕课网" /></a>
+    	 <a href="#"><img src="images/footer.jpg" alt="慕课网" /></a>
+          <a href="#"><img src="images/footer.jpg" alt="慕课网" /></a>
+    </p>
+</div>
+</div>
+<div class="back_to_top"><img src="images/icon/select4.png"></div>
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="js/my_js.js"></script>
+</body>
+</html>
